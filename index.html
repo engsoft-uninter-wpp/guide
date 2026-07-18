@@ -1,0 +1,760 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Guia da Comunidade · Engenharia de Software UNINTER</title>
+<meta name="description" content="Guia da comunidade (oficial) de estudantes de Engenharia de Software da UNINTER. Encontre seu grupo por UCFC, canais oficiais e regras de convivência.">
+<link rel="icon" href="images/favicon.ico">
+<style>
+  :root{
+    --brand:#2E97F2;
+    --brand-dark:#043F8C;
+    --bg:#F2F2F2;
+    --ink:#1c2733;
+    --muted:#8a94a0;
+    --card:#ffffff;
+    --radius:18px;
+    --shadow:0 6px 20px rgba(4,63,140,.08);
+    --shadow-hover:0 12px 30px rgba(4,63,140,.16);
+
+    /* Cores por ano (banners do documento) */
+    --y1:#3e7c3a; --y1-bg:#eaf3e9;   /* 1º ano  - verde  */
+    --y2:#2e97f2; --y2-bg:#e6f1fc;   /* 2º ano  - azul   */
+    --y3:#c4122f; --y3-bg:#fbe8eb;   /* 3º ano  - vermelho*/
+    --y4:#7a2e8e; --y4-bg:#f2e7f5;   /* 4º ano  - roxo   */
+    --y5:#8a5a2b; --y5-bg:#f2e9df;   /* especiais - marrom */
+
+    --peach:#fce9e1;   /* canais fixos */
+    --info:#e4eefa;    /* caixas informativas */
+  }
+
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:smooth}
+  body{
+    font-family:"Segoe UI",Roboto,-apple-system,Helvetica,Arial,sans-serif;
+    color:var(--ink);
+    background:var(--bg);
+    line-height:1.55;
+    -webkit-font-smoothing:antialiased;
+  }
+  .wrap{max-width:1100px;margin:0 auto;padding:0 18px}
+
+  /* ---------- HERO ---------- */
+  .hero{
+    position:relative;
+    background:
+      radial-gradient(1200px 400px at 80% -10%,rgba(46,151,242,.35),transparent 60%),
+      linear-gradient(135deg,var(--brand-dark),var(--brand));
+    color:#fff;
+    padding:52px 18px 64px;
+    text-align:center;
+    overflow:hidden;
+  }
+  .hero::after{
+    content:"</>";
+    position:absolute;right:-10px;bottom:-30px;
+    font:800 160px/1 "Segoe UI",sans-serif;
+    color:rgba(255,255,255,.06);
+    pointer-events:none;
+  }
+  .hero-logo{
+    width:118px;height:118px;border-radius:50%;
+    background:#fff;padding:6px;
+    box-shadow:0 8px 26px rgba(0,0,0,.25);
+    margin:0 auto 18px;display:block;
+  }
+  .hero h1{font-size:clamp(1.7rem,4.5vw,2.6rem);font-weight:800;letter-spacing:-.5px}
+  .hero .sub{font-size:clamp(1rem,2.5vw,1.25rem);opacity:.92;margin-top:6px;font-weight:500}
+  .badge-oficial{
+    display:inline-flex;align-items:center;gap:8px;
+    margin-top:20px;padding:8px 16px;border-radius:999px;
+    background:rgba(255,255,255,.15);border:1px solid rgba(255,255,255,.35);
+    font-size:.9rem;font-weight:600;backdrop-filter:blur(4px);
+    color:#fff;
+    text-decoration:none;
+    transition:background .2s ease, transform .2s ease;
+  }
+  .badge-oficial:hover{
+    background:rgba(255,255,255,.25);
+    transform:translateY(-2px);
+  }
+
+  /* ---------- SEÇÕES ---------- */
+  main{padding:40px 0 60px}
+  section{margin-top:46px}
+  .section-title{
+    display:flex;align-items:center;gap:12px;
+    font-size:1.5rem;font-weight:800;color:var(--brand-dark);
+    margin-bottom:8px;
+  }
+  .section-title .em{font-size:1.6rem;line-height:1}
+  .section-lead{color:#4a5563;margin-bottom:22px;max-width:760px}
+
+  /* Banner de seção estilo "tech" */
+  .banner{
+    position:relative;
+    text-align:center;
+    padding:26px 20px;
+    border:2px solid var(--bc,var(--brand));
+    border-radius:16px;
+    color:var(--bc,var(--brand));
+    background:linear-gradient(180deg,rgba(255,255,255,.6),transparent);
+    font-weight:800;letter-spacing:2px;text-transform:uppercase;
+    font-size:clamp(1.2rem,4vw,2rem);
+    margin-bottom:26px;
+    overflow:hidden;
+  }
+  .banner::before,.banner::after{
+    content:"</>";position:absolute;top:50%;transform:translateY(-50%);
+    font-size:1rem;font-weight:700;opacity:.7;letter-spacing:0;
+  }
+  .banner::before{left:18px}
+  .banner::after{content:"{ }";right:18px}
+
+  /* ---------- CARDS ---------- */
+  .grid{display:grid;gap:18px}
+  .cols-3{grid-template-columns:repeat(3,1fr)}
+  .cols-2{grid-template-columns:repeat(2,1fr)}
+  @media(max-width:860px){.cols-3{grid-template-columns:1fr 1fr}}
+  @media(max-width:620px){.cols-3,.cols-2{grid-template-columns:1fr}}
+
+  .card{
+    background:var(--card);
+    border:1px solid rgba(4,63,140,.10);
+    border-radius:var(--radius);
+    padding:22px;
+    box-shadow:var(--shadow);
+    transition:transform .18s ease,box-shadow .18s ease;
+  }
+  .card h3{
+    display:flex;align-items:center;gap:10px;
+    font-size:1.12rem;margin-bottom:10px;color:var(--ink);
+  }
+  .card h3 .em{font-size:1.3rem;line-height:1}
+  .card p{color:#41505f;font-size:.97rem}
+  .lock{
+    margin-top:14px;padding-top:12px;border-top:1px dashed rgba(0,0,0,.12);
+    color:var(--muted);font-size:.86rem;display:flex;align-items:center;gap:8px;
+  }
+
+  /* Canais fixos (peach) */
+  .channel{background:var(--peach);border-color:rgba(196,18,47,.12)}
+  .channel ul{margin:10px 0 0 4px;list-style:none}
+  .channel li{position:relative;padding:3px 0 3px 20px;color:#41505f;font-size:.95rem}
+  .channel li::before{content:"•";position:absolute;left:4px;color:var(--brand);font-weight:800}
+
+  .info-card{background:var(--info);border-color:rgba(46,151,242,.18)}
+
+  /* ---------- Passo a passo ---------- */
+  .steps{display:grid;gap:16px;grid-template-columns:repeat(3,1fr)}
+  @media(max-width:760px){.steps{grid-template-columns:1fr}}
+  .step{
+    background:#fff;border-radius:var(--radius);padding:22px;
+    border:1px solid rgba(4,63,140,.10);box-shadow:var(--shadow);
+    position:relative;
+  }
+  .step .num{
+    display:inline-flex;align-items:center;justify-content:center;
+    width:38px;height:38px;border-radius:50%;
+    background:var(--brand);color:#fff;font-weight:800;font-size:1.1rem;margin-bottom:10px;
+  }
+  .step h4{font-size:1.05rem;margin-bottom:6px;color:var(--brand-dark)}
+  .step p,.step li{font-size:.92rem;color:#41505f}
+  .step ol{margin:8px 0 0 18px}
+  .step ol li{margin:2px 0}
+  figure{margin-top:18px}
+  figure img{width:100%;border-radius:12px;border:1px solid rgba(0,0,0,.1);display:block}
+  figcaption{text-align:center;color:var(--muted);font-size:.82rem;margin-top:8px}
+
+  /* ---------- UCFC cards ---------- */
+  .year{margin-top:40px}
+  .year-head{
+    display:flex;align-items:center;gap:14px;margin-bottom:20px;
+  }
+  .year-chip{
+    display:inline-flex;align-items:center;gap:10px;
+    padding:12px 22px;border-radius:14px;
+    font-weight:800;font-size:1.15rem;letter-spacing:.5px;
+    color:#fff;
+  }
+  .year-line{flex:1;height:3px;border-radius:3px;opacity:.35}
+
+  .ucfc{
+    display:flex;flex-direction:column;
+    border-radius:var(--radius);overflow:hidden;
+    background:#fff;border:1px solid rgba(4,63,140,.10);
+    box-shadow:var(--shadow);
+    transition:transform .18s ease,box-shadow .18s ease;
+  }
+  .ucfc:hover{transform:translateY(-4px);box-shadow:var(--shadow-hover)}
+  .ucfc-head{
+    padding:16px 18px;
+    border-bottom:1px solid rgba(0,0,0,.06);
+  }
+  .ucfc-tag{font-size:.78rem;font-weight:700;letter-spacing:.5px;text-transform:uppercase;opacity:.75}
+  .ucfc-name{display:flex;align-items:center;gap:9px;font-size:1.18rem;font-weight:800;margin-top:2px}
+  .ucfc-name .em{font-size:1.35rem;line-height:1}
+  .ucfc-body{padding:16px 18px;flex:1}
+  .disc{list-style:none}
+  .disc li{
+    position:relative;padding:7px 0 7px 20px;
+    font-style:italic;font-size:.95rem;color:#26313d;
+    border-bottom:1px dashed rgba(0,0,0,.06);
+  }
+  .disc li:last-child{border-bottom:0}
+  .disc li::before{content:"▸";position:absolute;left:2px;font-style:normal;color:var(--brand)}
+  .disc .old{color:var(--muted);font-weight:400}
+  .disc .old::before{content:"↳ ";}
+  .ucfc-foot{
+    padding:12px 18px;background:rgba(4,63,140,.03);
+    border-top:1px dashed rgba(0,0,0,.10);
+  }
+  .join{
+    display:inline-flex;align-items:center;gap:8px;
+    font-size:.85rem;font-weight:700;
+    color:var(--yc, var(--brand));
+    text-decoration:none;
+    transition:color .18s ease, transform .18s ease;
+  }
+  .join:hover{
+    color:var(--brand-dark);
+    transform:translateX(2px);
+  }
+
+  /* ---------- Help / footer ---------- */
+  .help{
+    background:var(--info);border:1px solid rgba(46,151,242,.2);
+    border-radius:var(--radius);padding:24px;text-align:center;
+    font-size:1.02rem;color:#2b3a49;box-shadow:var(--shadow);
+  }
+  .help strong{color:var(--brand-dark)}
+  footer{
+    margin-top:56px;padding:26px 18px;text-align:center;
+    background:var(--brand-dark);color:rgba(255,255,255,.85);font-size:.9rem;
+  }
+  footer .env{opacity:.65;font-size:.8rem;margin-top:6px}
+</style>
+</head>
+<body>
+
+<!-- ================= HERO ================= -->
+<header class="hero" role="banner">
+  <img class="hero-logo" src="images/community-circle.png" alt="Logo circular da comunidade de Engenharia de Software UNINTER">
+  <h1>Guia da Comunidade</h1>
+  <p class="sub">Engenharia de Software · UNINTER</p>
+  <a href="https://chat.whatsapp.com/CDbdr9JJO2GDMk9SOBmt0x" class="badge-oficial" target="_blank" rel="noopener noreferrer" aria-label="Entrar no grupo oficial da comunidade de Engenharia de Software UNINTER no WhatsApp">Entrar na Comunidade Oficial <span aria-hidden="true">✅</span></a>
+</header>
+
+<main class="wrap">
+
+  <!-- ============ BOAS-VINDAS ============ -->
+  <section id="boas-vindas" aria-labelledby="welcome-title">
+    <div class="card info-card">
+      <h3 id="welcome-title"><span class="em" aria-hidden="true">👋</span> Seja bem-vindo(a), estudante!</h3>
+      <p>
+        Esta comunidade foi criada para reunir estudantes de <strong>todas as grades de Engenharia de Software</strong>.
+        Como a grade curricular do curso mudou ao longo dos anos, alunos de turmas diferentes podem cursar conteúdos
+        semelhantes com nomes diferentes. Para facilitar a organização, os grupos da comunidade foram organizados de
+        acordo com as <strong>UCFCs do plano de ensino atual (ano 2025 em diante)</strong>, reunindo também as
+        disciplinas equivalentes do plano anterior. Assim, independentemente do seu ano de ingresso, você encontrará
+        facilmente o grupo correto.
+      </p>
+    </div>
+  </section>
+
+  <!-- ============ CANAIS FIXOS ============ -->
+  <section id="canais" aria-labelledby="canais-title">
+    <h2 class="section-title" id="canais-title"><span class="em" aria-hidden="true">📌</span> Canais oficiais da comunidade</h2>
+    <p class="section-lead">Espaços fixos que todo membro encontra ao entrar na comunidade.</p>
+    <div class="grid cols-3">
+
+      <div class="card channel" style="display: flex; flex-direction: column;">
+        <h3 id="canal-comece"><span class="em" aria-hidden="true">🚀</span> Comece por Aqui</h3>
+        <p style="flex: 1;">Seu ponto de partida na comunidade. Neste grupo você encontrará:</p>
+        <ul style="margin-bottom: 12px;">
+          <li>Guia da comunidade;</li>
+          <li>Regras de convivência;</li>
+          <li>Como encontrar seu grupo;</li>
+          <li>Informações úteis para novos membros;</li>
+          <li>Este guia.</li>
+        </ul>
+        <div class="lock" style="margin-top: auto; margin-bottom: 12px;"><span aria-hidden="true">🔒</span> Somente administradores enviam mensagens.</div>
+        <div class="ucfc-foot" style="margin-top: auto; padding-top: 12px; border-top: 1px dashed rgba(0,0,0,.10);">
+          <a href="https://chat.whatsapp.com/Gy2GWp7CIgUJkBuOZwrCto" class="join" target="_blank" rel="noopener noreferrer" aria-label="Entrar no canal Comece por Aqui no WhatsApp">🔗 Entrar no canal</a>
+        </div>
+      </div>
+
+      <div class="card channel" style="display: flex; flex-direction: column;">
+        <h3 id="canal-avisos"><span class="em" aria-hidden="true">📣</span> Avisos</h3>
+        <p style="flex: 1; margin-bottom: 12px;">Canal oficial da comunidade. Aqui serão publicados comunicados importantes, atualizações, eventos,
+           mudanças na comunidade e outras informações relevantes.</p>
+        <div class="lock" style="margin-top: auto;"><span aria-hidden="true">🔒</span> Somente administradores enviam mensagens.</div>
+      </div>
+
+      <div class="card channel" style="display: flex; flex-direction: column;">
+        <h3 id="canal-geral"><span class="em" aria-hidden="true">💬</span> Geral</h3>
+        <p style="flex: 1; margin-bottom: 12px;">Nosso espaço de convivência. Aqui vale conversar sobre o curso, trocar experiências, compartilhar
+           conquistas, pedir indicações de materiais, conversar sobre tecnologia ou simplesmente conhecer outros
+           estudantes. Este grupo existe para fortalecer a comunidade.</p>
+        <div class="ucfc-foot" style="margin-top: auto; padding-top: 12px; border-top: 1px dashed rgba(0,0,0,.10);">
+          <a href="https://chat.whatsapp.com/CiqofQWyyVbFSUfnYDrd6S" class="join" target="_blank" rel="noopener noreferrer" aria-label="Entrar no chat Geral no WhatsApp">🔗 Entrar no grupo</a>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ============ COMO ENCONTRAR SEU GRUPO ============ -->
+  <section id="como-encontrar" aria-labelledby="como-encontrar-title">
+    <h2 class="section-title" id="como-encontrar-title"><span class="em" aria-hidden="true">🧭</span> Como encontrar seu grupo</h2>
+
+    <div class="card info-card" style="margin-bottom:22px">
+      <p>Cada grupo representa uma <strong>UCFC (Unidade Curricular de Formação Continuada)</strong> da nova matriz
+         curricular. Dentro de cada grupo estão reunidas:</p>
+      <ul style="list-style:none;margin:10px 0 0">
+        <li style="padding:3px 0"><span aria-hidden="true">✅</span> Disciplinas da grade atual</li>
+        <li style="padding:3px 0"><span aria-hidden="true">✅</span> Disciplinas equivalentes da grade anterior</li>
+      </ul>
+      <p style="margin-top:10px">Isso evita grupos duplicados e reúne estudantes que estudam conteúdos semelhantes.</p>
+    </div>
+
+    <div class="steps">
+      <div class="step">
+        <span class="num">1</span>
+        <h4>Descubra quais disciplinas você está cursando</h4>
+        <p>Você pode consultar suas disciplinas diretamente no AVA:</p>
+        <ol>
+          <li>Acesse o AVA;</li>
+          <li>Clique em <em>Meus Cursos</em>;</li>
+          <li>Selecione <em>Bacharelado em Engenharia de Software</em>;</li>
+          <li>Procure pela seção <em>Disciplinas em Andamento</em>;</li>
+          <li>Caso não esteja disponível, consulte <em>Disciplinas Futuras</em>.</li>
+        </ol>
+        <figure>
+          <img src="images/image23.png" alt="Captura de tela do AVA mostrando as disciplinas em andamento para o estudante de Engenharia de Software">
+          <figcaption>Exemplo da seção “Disciplinas em Andamento” no AVA.</figcaption>
+        </figure>
+      </div>
+
+      <div class="step">
+        <span class="num">2</span>
+        <h4>Procure por essas disciplinas no guia abaixo</h4>
+        <p>Cada disciplina está vinculada a uma UCFC. Localize as suas na lista de grupos por ano de curso.</p>
+      </div>
+
+      <div class="step">
+        <span class="num">3</span>
+        <h4>Entre no grupo correspondente</h4>
+        <p>Os grupos reúnem alunos da grade nova e da grade anterior que estudam os mesmos conteúdos, porém com
+           nomenclaturas diferentes.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ GRUPOS ============ -->
+  <section id="grupos">
+    <div class="banner" style="--bc:var(--brand-dark)">Grupos por UCFC</div>
+
+    <!-- ===== 1º ANO ===== -->
+    <div class="year" aria-labelledby="year-1-title">
+      <div class="year-head">
+        <span id="year-1-title" class="year-chip" style="background:var(--y1)"><span aria-hidden="true">🌱</span> 1º ano de curso</span>
+        <span class="year-line" style="background:var(--y1)"></span>
+      </div>
+      <div class="grid cols-3">
+
+        <article class="ucfc" style="--yc:var(--y1)" aria-labelledby="ucfc-1-title">
+          <div class="ucfc-head" style="background:var(--y1-bg)">
+            <div class="ucfc-tag" style="color:var(--y1)">Grupo · UCFC 1</div>
+            <div class="ucfc-name" id="ucfc-1-title"><span class="em" aria-hidden="true">🌱</span> Educação</div>
+          </div>
+          <div class="ucfc-body">
+            <ul class="disc">
+              <li>Formação Inicial em Educação a Distância</li>
+              <li>Pré-Cálculo</li>
+              <li>Metodologia Científica <span class="old">Metodologia de Pesquisa Aplicada (grade anterior)</span></li>
+              <li>Relações Étnico-Raciais</li>
+            </ul>
+          </div>
+          <div class="ucfc-foot">
+            <a href="https://chat.whatsapp.com/EskSPU9LNu1JZsB1FV0cCb?s=cl&p=a&ilr=1&amv=1" class="join" target="_blank" rel="noopener noreferrer" aria-label="Entrar no grupo UCFC 1 - Educação no WhatsApp">🔗 Entrar no grupo</a>
+          </div>
+        </article>
+
+        <article class="ucfc" style="--yc:var(--y1)" aria-labelledby="ucfc-2-title">
+          <div class="ucfc-head" style="background:var(--y1-bg)">
+            <div class="ucfc-tag" style="color:var(--y1)">Grupo · UCFC 2</div>
+            <div class="ucfc-name" id="ucfc-2-title"><span class="em" aria-hidden="true">🖥️</span> Sistemas e Fundamentos</div>
+          </div>
+          <div class="ucfc-body">
+            <ul class="disc">
+              <li>Formação Cidadã e Contemporânea</li>
+              <li>Fundamentos de Sistemas de Informação <span class="old">Demais disciplinas de Fundamentos (grade anterior)</span></li>
+              <li>Matemática Elementar</li>
+            </ul>
+          </div>
+          <div class="ucfc-foot">
+            <a href="https://chat.whatsapp.com/C8kPWqFguf4FuzOspP9V7m?s=cl&p=a&ilr=1&amv=1" class="join" target="_blank" rel="noopener noreferrer" aria-label="Entrar no grupo UCFC 2 - Sistemas e Fundamentos no WhatsApp">🔗 Entrar no grupo</a>
+          </div>
+        </article>
+
+        <article class="ucfc" style="--yc:var(--y1)" aria-labelledby="ucfc-3-title">
+          <div class="ucfc-head" style="background:var(--y1-bg)">
+            <div class="ucfc-tag" style="color:var(--y1)">Grupo · UCFC 3</div>
+            <div class="ucfc-name" id="ucfc-3-title"><span class="em" aria-hidden="true">💡</span> Lógica &amp; Prog</div>
+          </div>
+          <div class="ucfc-body">
+            <ul class="disc">
+              <li>Lógica de Programação e Algoritmos</li>
+              <li>Práticas em Sistemas Operacionais</li>
+              <li>Produção Textual <span class="old">Comunicação Empresarial (grade anterior)</span></li>
+            </ul>
+          </div>
+          <div class="ucfc-foot">
+            <a href="https://chat.whatsapp.com/CiyNqwuEcaHGBvGfEhOhAH?s=cl&p=a&ilr=1&amv=1" class="join" target="_blank" rel="noopener noreferrer" aria-label="Entrar no grupo UCFC 3 - Lógica & Prog no WhatsApp">🔗 Entrar no grupo</a>
+          </div>
+        </article>
+
+      </div>
+    </div>
+
+    <!-- ===== 2º ANO ===== -->
+    <div class="year" aria-labelledby="year-2-title">
+      <div class="year-head">
+        <span id="year-2-title" class="year-chip" style="background:var(--y2)"><span aria-hidden="true">💻</span> 2º ano de curso</span>
+        <span class="year-line" style="background:var(--y2)"></span>
+      </div>
+      <div class="grid cols-3">
+
+        <article class="ucfc" style="--yc:var(--y2)" aria-labelledby="ucfc-4-title">
+          <div class="ucfc-head" style="background:var(--y2-bg)">
+            <div class="ucfc-tag" style="color:var(--y2)">Grupo · UCFC 4</div>
+            <div class="ucfc-name" id="ucfc-4-title"><span class="em" aria-hidden="true">📐</span> Modelagem</div>
+          </div>
+          <div class="ucfc-body">
+            <ul class="disc">
+              <li>Análise e Modelagem de Sistemas</li>
+              <li>Cálculo Diferencial e Integral</li>
+              <li>Design de Interação <span class="old">Estética e Design Aplicado, Interação Humano-Computador (grade anterior)</span></li>
+            </ul>
+          </div>
+          <div class="ucfc-foot">
+            <a href="https://chat.whatsapp.com/KJAKRUmMhGn4xaDuw54c0G?s=cl&p=a&ilr=1&amv=1" class="join" target="_blank" rel="noopener noreferrer" aria-label="Entrar no grupo UCFC 4 - Modelagem no WhatsApp">🔗 Entrar no grupo</a>
+          </div>
+        </article>
+
+        <article class="ucfc" style="--yc:var(--y2)" aria-labelledby="ucfc-5-title">
+          <div class="ucfc-head" style="background:var(--y2-bg)">
+            <div class="ucfc-tag" style="color:var(--y2)">Grupo · UCFC 5</div>
+            <div class="ucfc-name" id="ucfc-5-title"><span class="em" aria-hidden="true">🌐</span> Dados &amp; Web</div>
+          </div>
+          <div class="ucfc-body">
+            <ul class="disc">
+              <li>Probabilidade e Estatística</li>
+              <li>Ferramentas de Desenvolvimento Web <span class="old">Aplicações Web e Móveis (grade anterior)</span></li>
+              <li>Banco de Dados Relacional</li>
+            </ul>
+          </div>
+          <div class="ucfc-foot">
+            <a href="https://chat.whatsapp.com/DcoAjBk2WEEILl6Sy23Ttq?s=cl&p=a&ilr=1&amv=1" class="join" target="_blank" rel="noopener noreferrer" aria-label="Entrar no grupo UCFC 5 - Dados & Web no WhatsApp">🔗 Entrar no grupo</a>
+          </div>
+        </article>
+
+        <article class="ucfc" style="--yc:var(--y2)" aria-labelledby="ucfc-6-title">
+          <div class="ucfc-head" style="background:var(--y2-bg)">
+            <div class="ucfc-tag" style="color:var(--y2)">Grupo · UCFC 6</div>
+            <div class="ucfc-name" id="ucfc-6-title"><span class="em" aria-hidden="true">⚙️</span> Eng. Software</div>
+          </div>
+          <div class="ucfc-body">
+            <ul class="disc">
+              <li>Engenharia de Software</li>
+              <li>Programação Orientada a Objetos</li>
+              <li>Raciocínio Lógico <span class="old">Lógica de Programação de Algoritmos (grade anterior)</span></li>
+            </ul>
+          </div>
+          <div class="ucfc-foot">
+            <a href="https://chat.whatsapp.com/HdhKuCyTakt9sdUggzvEQd?s=cl&p=a&ilr=1&amv=1" class="join" target="_blank" rel="noopener noreferrer" aria-label="Entrar no grupo UCFC 6 - Eng. Software no WhatsApp">🔗 Entrar no grupo</a>
+          </div>
+        </article>
+
+        <article class="ucfc" style="--yc:var(--y2)" aria-labelledby="ucfc-7-title">
+          <div class="ucfc-head" style="background:var(--y2-bg)">
+            <div class="ucfc-tag" style="color:var(--y2)">Grupo · UCFC 7</div>
+            <div class="ucfc-name" id="ucfc-7-title"><span class="em" aria-hidden="true">🔤</span> Linguagem de Programação Aplicada</div>
+          </div>
+          <div class="ucfc-body">
+            <ul class="disc">
+              <li>Linguagem de Programação Aplicada <span class="old">Linguagem de Programação, Programação I, II, III e IV (grade anterior)</span></li>
+              <li>Engenharia de Requisitos</li>
+              <li>Sistema Gerenciador de Banco de Dados</li>
+            </ul>
+          </div>
+          <div class="ucfc-foot">
+            <a href="https://chat.whatsapp.com/JFcFXOzR4W9IcNdbOB979c?s=cl&p=a&ilr=1&amv=1" class="join" target="_blank" rel="noopener noreferrer" aria-label="Entrar no grupo UCFC 7 - Linguagem de Programação Aplicada no WhatsApp">🔗 Entrar no grupo</a>
+          </div>
+        </article>
+
+        <article class="ucfc" style="--yc:var(--y2)" aria-labelledby="ucfc-8-title">
+          <div class="ucfc-head" style="background:var(--y2-bg)">
+            <div class="ucfc-tag" style="color:var(--y2)">Grupo · UCFC 8</div>
+            <div class="ucfc-name" id="ucfc-8-title"><span class="em" aria-hidden="true">🏆</span> Arquitetura</div>
+          </div>
+          <div class="ucfc-body">
+            <ul class="disc">
+              <li>Desenvolvimento Web Front-end</li>
+              <li>Qualidade de Software</li>
+              <li>Arquitetura de Sistemas</li>
+              <li>Gerência de Configuração e Evolução</li>
+            </ul>
+          </div>
+          <div class="ucfc-foot">
+            <a href="https://chat.whatsapp.com/FDNX0kNrb1GA2zxsc9A66K?s=cl&p=a&ilr=1&amv=1" class="join" target="_blank" rel="noopener noreferrer" aria-label="Entrar no grupo UCFC 8 - Arquitetura no WhatsApp">🔗 Entrar no grupo</a>
+          </div>
+        </article>
+
+      </div>
+    </div>
+
+    <!-- ===== 3º ANO ===== -->
+    <div class="year" aria-labelledby="year-3-title">
+      <div class="year-head">
+        <span id="year-3-title" class="year-chip" style="background:var(--y3)"><span aria-hidden="true">🔴</span> 3º ano de curso</span>
+        <span class="year-line" style="background:var(--y3)"></span>
+      </div>
+      <div class="grid cols-3">
+
+        <article class="ucfc" style="--yc:var(--y3)" aria-labelledby="ucfc-9-title">
+          <div class="ucfc-head" style="background:var(--y3-bg)">
+            <div class="ucfc-tag" style="color:var(--y3)">Grupo · UCFC 9</div>
+            <div class="ucfc-name" id="ucfc-9-title"><span class="em" aria-hidden="true">📊</span> Métricas &amp; Redes</div>
+          </div>
+          <div class="ucfc-body">
+            <ul class="disc">
+              <li>Modelagem de Processos e Negócios</li>
+              <li>Métricas e Estimativa de Software</li>
+              <li>Redes de Computadores <span class="old">Internet das Coisas (grade anterior)</span></li>
+            </ul>
+          </div>
+          <div class="ucfc-foot">
+            <a href="https://chat.whatsapp.com/Ha7mx7wOPzSFZltTmnz3XC?s=cl&p=a&ilr=1&amv=1" class="join" target="_blank" rel="noopener noreferrer" aria-label="Entrar no grupo UCFC 9 - Métricas & Redes no WhatsApp">🔗 Entrar no grupo</a>
+          </div>
+        </article>
+
+        <article class="ucfc" style="--yc:var(--y3)" aria-labelledby="ucfc-10-title">
+          <div class="ucfc-head" style="background:var(--y3-bg)">
+            <div class="ucfc-tag" style="color:var(--y3)">Grupo · UCFC 10</div>
+            <div class="ucfc-name" id="ucfc-10-title"><span class="em" aria-hidden="true">📱</span> Estruturação</div>
+          </div>
+          <div class="ucfc-body">
+            <ul class="disc">
+              <li>Programação Aplicada</li>
+              <li>Estrutura de Dados <span class="old">Big Data (grade anterior)</span></li>
+              <li>Segurança em Sistemas de Informação</li>
+            </ul>
+          </div>
+          <div class="ucfc-foot">
+            <a href="https://chat.whatsapp.com/GE8WY3u6RjV2ozrqk7RNMl?s=cl&p=a&ilr=1&amv=1" class="join" target="_blank" rel="noopener noreferrer" aria-label="Entrar no grupo UCFC 10 - Estruturação no WhatsApp">🔗 Entrar no grupo</a>
+          </div>
+        </article>
+
+        <article class="ucfc" style="--yc:var(--y3)" aria-labelledby="ucfc-11-title">
+          <div class="ucfc-head" style="background:var(--y3-bg)">
+            <div class="ucfc-tag" style="color:var(--y3)">Grupo · UCFC 11</div>
+            <div class="ucfc-name" id="ucfc-11-title"><span class="em" aria-hidden="true">🚀</span> DevOps &amp; Gestão</div>
+          </div>
+          <div class="ucfc-body">
+            <ul class="disc">
+              <li>Pesquisa Operacional</li>
+              <li>Gestão de Projetos com Métodos Ágeis <span class="old">Metodologias Ágeis, Gestão de Projetos, Gestão de Startups (grade anterior)</span></li>
+              <li>DevOps e Integração Contínua</li>
+            </ul>
+          </div>
+          <div class="ucfc-foot">
+            <a href="https://chat.whatsapp.com/D7JN8ipavHvEh1u0HmMUDL?s=cl&p=a&ilr=1&amv=1" class="join" target="_blank" rel="noopener noreferrer" aria-label="Entrar no grupo UCFC 11 - DevOps & Gestão no WhatsApp">🔗 Entrar no grupo</a>
+          </div>
+        </article>
+
+        <article class="ucfc" style="--yc:var(--y3)" aria-labelledby="ucfc-12-title">
+          <div class="ucfc-head" style="background:var(--y3-bg)">
+            <div class="ucfc-tag" style="color:var(--y3)">Grupo · UCFC 12</div>
+            <div class="ucfc-name" id="ucfc-12-title"><span class="em" aria-hidden="true">🤖</span> IA &amp; Dados</div>
+          </div>
+          <div class="ucfc-body">
+            <ul class="disc">
+              <li>Inteligência Artificial Aplicada <span class="old">Inteligência Artificial, Machine Learning (grade anterior)</span></li>
+              <li>Visualização de Dados e Storytelling</li>
+              <li>Ciências do Ambiente e Sustentabilidade</li>
+            </ul>
+          </div>
+          <div class="ucfc-foot">
+            <a href="https://chat.whatsapp.com/DwCLVPfZn8KFnE8GYViTck?s=cl&p=a&ilr=1&amv=1" class="join" target="_blank" rel="noopener noreferrer" aria-label="Entrar no grupo UCFC 12 - IA & Dados no WhatsApp">🔗 Entrar no grupo</a>
+          </div>
+        </article>
+
+        <article class="ucfc" style="--yc:var(--y3)" aria-labelledby="ucfc-13-title">
+          <div class="ucfc-head" style="background:var(--y3-bg)">
+            <div class="ucfc-tag" style="color:var(--y3)">Grupo · UCFC 13</div>
+            <div class="ucfc-name" id="ucfc-13-title"><span class="em" aria-hidden="true">✅</span> Testes</div>
+          </div>
+          <div class="ucfc-body">
+            <ul class="disc">
+              <li>Testes de Aplicativos Móveis</li>
+              <li>Testes de Software</li>
+              <li>Gerência de Configuração e Evolução</li>
+            </ul>
+          </div>
+          <div class="ucfc-foot">
+            <a href="https://chat.whatsapp.com/GFh8oSbDXWP4PRlrVvjQvW?s=cl&p=a&ilr=1&amv=1" class="join" target="_blank" rel="noopener noreferrer" aria-label="Entrar no grupo UCFC 13 - Testes no WhatsApp">🔗 Entrar no grupo</a>
+          </div>
+        </article>
+
+      </div>
+    </div>
+
+    <!-- ===== 4º ANO ===== -->
+    <div class="year" aria-labelledby="year-4-title">
+      <div class="year-head">
+        <span id="year-4-title" class="year-chip" style="background:var(--y4)"><span aria-hidden="true">🟣</span> 4º ano de curso</span>
+        <span class="year-line" style="background:var(--y4)"></span>
+      </div>
+      <div class="grid cols-2">
+
+        <article class="ucfc" style="--yc:var(--y4)" aria-labelledby="ucfc-14-15-title">
+          <div class="ucfc-head" style="background:var(--y4-bg)">
+            <div class="ucfc-tag" style="color:var(--y4)">Grupo · UCFC 14 e 15</div>
+            <div class="ucfc-name" id="ucfc-14-15-title"><span class="em" aria-hidden="true">☁️⚖️</span> Cloud, APIs &amp; Governança</div>
+          </div>
+          <div class="ucfc-body">
+            <ul class="disc">
+              <li>Desenvolvimento Web Back-end</li>
+              <li>Arquitetura e Desenvolvimento de APIs <span class="old">Computação em Nuvem (grade anterior)</span></li>
+              <li>Governança de Tecnologia da Informação <span class="old">Governança de Sistemas da Informação (grade anterior)</span></li>
+              <li>Cibersegurança para Desenvolvedores</li>
+            </ul>
+          </div>
+          <div class="ucfc-foot">
+            <a href="https://chat.whatsapp.com/IuOa3pDsmVnAGqGN08Y1RM?s=cl&p=a&ilr=1&amv=1" class="join" target="_blank" rel="noopener noreferrer" aria-label="Entrar no grupo UCFC 14 e 15 - Cloud, APIs & Governança no WhatsApp">🔗 Entrar no grupo</a>
+          </div>
+        </article>
+
+        <article class="ucfc" style="--yc:var(--y4)" aria-labelledby="ucfc-16-17-title">
+          <div class="ucfc-head" style="background:var(--y4-bg)">
+            <div class="ucfc-tag" style="color:var(--y4)">Grupo · UCFC 16 e 17</div>
+            <div class="ucfc-name" id="ucfc-16-17-title"><span class="em" aria-hidden="true">📱📜</span> Mobile, NoSQL &amp; Direito e Ética</div>
+          </div>
+          <div class="ucfc-body">
+            <ul class="disc">
+              <li>Desenvolvimento Mobile Multiplataforma</li>
+              <li>Banco de Dados NoSQL</li>
+              <li>Direito Cibernético</li>
+              <li>Legislação, Ética e Conformidade <span class="old">Ética Empresarial e Responsabilidade Socioambiental (grade anterior)</span></li>
+              <li>Design para Dispositivos Móveis</li>
+            </ul>
+          </div>
+          <div class="ucfc-foot">
+            <a href="https://chat.whatsapp.com/Ig8mSUzU4AmKQVzBdA2BSv?s=cl&p=a&ilr=1&amv=1" class="join" target="_blank" rel="noopener noreferrer" aria-label="Entrar no grupo UCFC 16 e 17 - Mobile, NoSQL & Direito e Ética no WhatsApp">🔗 Entrar no grupo</a>
+          </div>
+        </article>
+
+      </div>
+    </div>
+
+    <!-- ===== ESPECIAIS E ELETIVAS ===== -->
+    <div class="year" aria-labelledby="year-specials-title">
+      <div class="year-head">
+        <span id="year-specials-title" class="year-chip" style="background:var(--y5)"><span aria-hidden="true">🎯</span> Especiais e Eletivas</span>
+        <span class="year-line" style="background:var(--y5)"></span>
+      </div>
+      <div class="grid cols-2">
+
+        <article class="ucfc" style="--yc:var(--y5)" aria-labelledby="ucfc-18-title">
+          <div class="ucfc-head" style="background:var(--y5-bg)">
+            <div class="ucfc-tag" style="color:var(--y5)">Grupo · UCFC 18</div>
+            <div class="ucfc-name" id="ucfc-18-title"><span class="em" aria-hidden="true">🎯</span> Especiais e Eletivas</div>
+          </div>
+          <div class="ucfc-body">
+            <ul class="disc">
+              <li>Projeto Final de Curso (TCC)</li>
+              <li>Estágio Supervisionado</li>
+              <li>Atividades Complementares</li>
+              <li>Atividades Extensionistas</li>
+              <li>Projetos Interdisciplinares</li>
+              <li>Eletivas</li>
+            </ul>
+          </div>
+          <div class="ucfc-foot">
+            <a href="https://chat.whatsapp.com/GtpHKg6kIeMKHRYJJWTXbk?s=cl&p=a&ilr=1&amv=1" class="join" target="_blank" rel="noopener noreferrer" aria-label="Entrar no grupo UCFC 18 - Especiais e Eletivas no WhatsApp">🔗 Entrar no grupo</a>
+          </div>
+        </article>
+
+      </div>
+    </div>
+
+  </section>
+
+  <!-- ============ OUTROS GRUPOS ============ -->
+  <section id="outros-grupos" aria-labelledby="outros-grupos-title">
+    <div class="banner" style="--bc:#e8722a" id="outros-grupos-title">Outros grupos da comunidade</div>
+    <div class="grid cols-3">
+
+      <div class="card" style="display: flex; flex-direction: column;">
+        <h3 id="grupo-vagas"><span class="em" aria-hidden="true">💼</span> Vagas, Cursos e Projetos</h3>
+        <p>Espaço destinado à divulgação de:</p>
+        <ul style="list-style:none;margin:8px 0 0">
+          <li style="padding:2px 0 2px 18px;position:relative">Oportunidades de estágio;</li>
+          <li style="padding:2px 0 2px 18px">Vagas de emprego;</li>
+          <li style="padding:2px 0 2px 18px">Cursos;</li>
+          <li style="padding:2px 0 2px 18px">Eventos;</li>
+          <li style="padding:2px 0 2px 18px">Hackathons;</li>
+          <li style="padding:2px 0 2px 18px">Projetos;</li>
+          <li style="padding:2px 0 2px 18px">Iniciação científica;</li>
+          <li style="padding:2px 0 2px 18px">Demais oportunidades acadêmicas e profissionais.</li>
+        </ul>
+        <p style="margin-top:10px; flex: 1;">As publicações são realizadas apenas pelos administradores para evitar spam e
+           garantir a qualidade das divulgações.</p>
+        <div class="lock" style="margin-top: auto; margin-bottom: 12px;"><span aria-hidden="true">📩</span> Para divulgar uma oportunidade, entre em contato com um administrador para análise e publicação.</div>
+        <div class="ucfc-foot" style="margin-top: auto; padding-top: 12px; border-top: 1px dashed rgba(0,0,0,.10);">
+          <a href="https://chat.whatsapp.com/JFiE6Rs80AF8jVOVJS2TCU" class="join" target="_blank" rel="noopener noreferrer" aria-label="Entrar no grupo de Vagas, Cursos e Projetos no WhatsApp">🔗 Entrar no grupo</a>
+        </div>
+      </div>
+
+      <div class="card" style="display: flex; flex-direction: column;">
+        <h3 id="grupo-duvidas"><span class="em" aria-hidden="true">❓</span> Dúvidas</h3>
+        <p style="flex: 1;">Espaço para fazer perguntas relacionadas ao curso, disciplinas, AVA, matrícula, atividades e demais
+           assuntos acadêmicos. Todos os membros podem participar ajudando uns aos outros.</p>
+        <div class="lock" style="margin-top: auto; margin-bottom: 12px;"><span aria-hidden="true">💡</span> Caso o movimento do grupo aumente muito, poderão ser definidos horários específicos para as
+           conversas, visando manter a organização da comunidade.</div>
+        <div class="ucfc-foot" style="margin-top: auto; padding-top: 12px; border-top: 1px dashed rgba(0,0,0,.10);">
+          <a href="https://chat.whatsapp.com/LcKpRwoCwk81zg4Ijkr2fE" class="join" target="_blank" rel="noopener noreferrer" aria-label="Entrar no grupo de Dúvidas no WhatsApp">🔗 Entrar no grupo</a>
+        </div>
+      </div>
+
+      <div class="card">
+        <h3 id="grupo-meninas"><span class="em" aria-hidden="true">💜</span> Grupo das Meninas</h3>
+        <p>Um espaço reservado para promover acolhimento, networking e troca de experiências entre as estudantes do
+           curso. O objetivo é fortalecer a participação feminina na tecnologia por meio de uma comunidade segura,
+           respeitosa e colaborativa.</p>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ============ AJUDA ============ -->
+  <section id="ajuda">
+    <div class="help">
+      <strong>Não encontrou sua disciplina?</strong><br>
+      Se você não encontrou sua disciplina ou ficou em dúvida sobre qual grupo entrar, envie uma mensagem para algum
+      administrador da comunidade. Teremos prazer em ajudar! 🤝
+    </div>
+  </section>
+
+</main>
+
+<footer>
+  Guia da Comunidade de Engenharia de Software · UNINTER
+  <div class="env">Comunidade oficial de estudantes · Organização por UCFC (plano de ensino 2025+)</div>
+</footer>
+
+</body>
+</html>
